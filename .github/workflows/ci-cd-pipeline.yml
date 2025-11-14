@@ -1,0 +1,43 @@
+name: CI/CD Pipeline
+
+# O pipeline será executado automaticamente sempre que houver um push ou pull request na branch main
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Baixa o código do repositório
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      # 2️⃣ Configura o Node.js na versão 18
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # 3️⃣ Instala as dependências do projeto (a partir do package.json)
+      - name: Instalar dependências
+        run: npm ci
+
+      # 4️⃣ Executa os testes do Firebase
+      - name: Executar testes Firebase
+        env:
+          FIREBASE_SERVICE_ACCOUNT_BASE64: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_BASE64 }}
+        run: npm test
+
+      # 5️⃣ Realiza o build da aplicação (simulado)
+      - name: Build da aplicação
+        run: npm run build
+
+      # 6️⃣ Simula o deploy (você pode adaptar para deploy real no Firebase Hosting ou outro serviço)
+      - name: Deploy (Simulado)
+        run: echo "✅ Deploy simulado executado com sucesso!"

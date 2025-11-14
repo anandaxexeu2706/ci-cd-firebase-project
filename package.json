@@ -1,0 +1,17 @@
+{
+  "name": "ci-cd-firebase-project",
+  "version": "1.0.0",
+  "description": "Projeto exemplo para atividade de CI/CD com GitHub Actions e Firebase",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test-firebase.js",
+    "build": "echo \"Build step (simulado) concluído\""
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "firebase-admin": "^13.6.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
